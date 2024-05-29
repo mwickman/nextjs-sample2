@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: $POD_NAME-deployment
+  labels:
+    app: $POD_NAME
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: $POD_NAME
+  template:
+    metadata:
+      labels:
+        app: $POD_NAME
+    spec:
+      containers:
+        - name: $POD_NAME
+          image: $FULL_IMAGE_WITH_TAG
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 512Mi
+            requests:
+              cpu: 2000m
+              memory: 512Mi
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: regcred
