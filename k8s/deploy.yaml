@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: $POD_NAME-deployment
+  name: section-project-deployment
   labels:
-    app: $POD_NAME
+    app: console-project
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: $POD_NAME
+      app: console-project
   template:
     metadata:
       labels:
-        app: $POD_NAME
+        app: console-project
     spec:
       containers:
-        - name: $POD_NAME
+        - name: console-project
           image: $FULL_IMAGE_WITH_TAG
           imagePullPolicy: Always
           resources:
